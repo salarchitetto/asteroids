@@ -1933,7 +1933,7 @@ AlienBullet.prototype = new Bullet();
 
 Asteroid = function () {
     var errorString = 'We have found some complications with your requested itinerary, and the budget requires further review. Our support team will be reaching out to you soon (typically within two hours) to confirm your itinerary and provide a budget. You will still have 24 hours to book your travel after the budget is finalized.';
-    var text_list = errorString.split(' ');
+    var text_list = errorString.replace(/\W/, '').split(' ');
     var random_number = Math.floor(Math.random() * text_list.length);
     var rt_text = text_list[random_number]
 
