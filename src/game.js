@@ -2126,7 +2126,7 @@ Text = {
 
 Game = {
     score: 0,
-    totalAsteroids: 10,
+    totalAsteroids: 15,
     lives: 0,
 
     canvasWidth: 600,
@@ -2189,7 +2189,7 @@ Game = {
 
             Game.score = 0;
             Game.lives = 2;
-            Game.totalAsteroids = 2;
+            Game.totalAsteroids = 15;
             Game.spawnAsteroids();
 
             Game.nextBigAlienTime = Date.now() + 30000 + (30000 * Math.random());
@@ -2230,7 +2230,7 @@ Game = {
             if (Date.now() - this.timer > 1000) {
                 this.timer = null;
                 Game.totalAsteroids++;
-                if (Game.totalAsteroids > 12) Game.totalAsteroids = 12;
+                if (Game.totalAsteroids > 20) Game.totalAsteroids = 15;
                 Game.spawnAsteroids();
                 this.state = 'run';
             }
