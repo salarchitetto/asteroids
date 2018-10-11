@@ -88,7 +88,7 @@ Sprite = function () {
     this.name     = name;
     this.points   = points;
     this.rt_text = rt_text;
-    this.pic = pic;
+    //this.pic = pic;
 
     this.vel = {
       x:   0,
