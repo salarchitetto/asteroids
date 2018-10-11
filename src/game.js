@@ -1652,6 +1652,8 @@ Sprite = function () {
 };
 
 Ship = function () {
+    var pic = new Image();
+    pic.src = require('./smackathon_rocket.png');
     this.init("ship",
         [-6, 7,
             0, -11,
