@@ -1518,8 +1518,8 @@ Sprite = function () {
         }
 
         if (this.rt_text != null) {
-            this.context.font = "30px Arial";
-            this.context.fillText(rt_text, 0, 20);
+            this.context.font = "30px Courier New";
+            this.context.fillText(this.rt_text, 0, 20);
         }
 
         this.context.closePath();
@@ -1927,15 +1927,17 @@ AlienBullet.prototype = new Bullet();
 
 
 Asteroid = function () {
-    var text_list = ['a', 'b', 'c', 'd']
-    random_number = Math.floor(Math.random() * (text_list.length));
-    rt_text = text_list[random_number]
+    var errorString = 'We have found some complications with your requested itinerary, and the budget requires further review. Our support team will be reaching out to you soon (typically within two hours) to confirm your itinerary and provide a budget. You will still have 24 hours to book your travel after the budget is finalized.';
+    var text_list = errorString.split(' ');
+    var random_number = Math.floor(Math.random() * text_list.length);
+    var rt_text = text_list[random_number]
 
     this.init("asteroid",
-        [0, 0,
+        [
+            0, 0,
             0, 20,
-            20, 20,
-            20, 0
+            (rt_text.length * 18), 20,
+            (rt_text.length * 18), 0
         ],
         rt_text);
 
@@ -2144,9 +2146,6 @@ Game = {
             }
             roid.vel.x = Math.random() * 4 - 2;
             roid.vel.y = Math.random() * 4 - 2;
-            if (Math.random() > 0.5) {
-                roid.points.reverse();
-            }
             roid.vel.rot = Math.random() * 2 - 1;
             Game.sprites.push(roid);
         }
