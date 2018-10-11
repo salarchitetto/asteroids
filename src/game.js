@@ -1519,7 +1519,7 @@ Sprite = function () {
         }
 
         if (this.rt_text != null) {
-            this.context.font = "30px Courier New";
+            this.context.font = "20px Courier New";
             this.context.fillText(this.rt_text, 0, 20);
         }
         if (this.pic != null) {
