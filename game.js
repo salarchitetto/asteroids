@@ -122,11 +122,6 @@ Sprite = function () {
 
     this.context.save();
     this.configureTransform();
-    console.log(this.rt_text != null)
-    if (this.rt_text != null) {
-          this.context.font = "30px Arial";
-          this.context.fillText(rt_text, this.x, this.y);
-      }
     this.draw();
 
     var canidates = this.findCollisionCanidates();
@@ -250,6 +245,10 @@ Sprite = function () {
       var xi = i*2;
       var yi = xi + 1;
       this.context.lineTo(this.points[xi], this.points[yi]);
+      if (this.rt_text != null) {
+          this.context.font = "30px Arial";
+          this.context.fillText(rt_text, xi, yi);
+      }
     }
 
     this.context.closePath();
@@ -652,6 +651,8 @@ AlienBullet = function () {
 };
 AlienBullet.prototype = new Bullet();
 
+
+
 Asteroid = function () {
   var text_list = ['dictionary', 'dork', 'funny style']
   random_number = Math.floor(Math.random() * (text_list.length));
@@ -664,7 +665,7 @@ Asteroid = function () {
              20,   0],
              rt_text);
 
-  this.color = 'lightgray';
+  this.color = 'black';
   this.solid = true;
   this.visible = true;
   this.scale = 1;
@@ -875,7 +876,7 @@ SFX.muted = true;
 
 Game = {
   score: 0,
-  totalAsteroids: 50,
+  totalAsteroids: 10,
   lives: 0,
 
   canvasWidth: 800,
