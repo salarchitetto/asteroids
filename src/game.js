@@ -1523,7 +1523,7 @@ Sprite = function () {
             this.context.fillText(this.rt_text, 0, 20);
         }
         if (this.pic != null) {
-            this.context.drawImage(this.pic, this.points[2] - 12, this.points[3] + 4);
+            this.context.drawImage(this.pic, this.points[2] - 6, this.points[3] + 4);
         }
 
         this.context.closePath();
@@ -2060,7 +2060,6 @@ GridNode = function () {
 // http://typeface.neocracy.org
 Text = {
     renderGlyph: function (ctx, face, char) {
-
         var glyph = face.glyphs[char];
 
         if (glyph.o) {
