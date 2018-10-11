@@ -2131,8 +2131,8 @@ Game = {
     totalAsteroids: 15,
     lives: 0,
 
-    canvasWidth: 600,
-    canvasHeight: 400,
+    canvasWidth: 1090,
+    canvasHeight: 730,
 
     sprites: [],
     ship: null,
@@ -2194,7 +2194,7 @@ Game = {
             Game.totalAsteroids = 15;
             Game.spawnAsteroids();
 
-            Game.nextBigAlienTime = Date.now() + 15000 ;
+            Game.nextBigAlienTime = Date.now() + 10000 ;
 
             this.state = 'spawn_ship';
         },
