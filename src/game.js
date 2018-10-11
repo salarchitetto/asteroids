@@ -1747,11 +1747,11 @@ BigAlien = function () {
     var pic = new Image();
     // pic.src = require('./Business Class Token.png');
 
-    var pic_list = ['./Business Class Token.png', './Luxury Rental Token.png']
+    var pic_list = ['./Business Class Token.png', './Luxury Rental Token.png', './Five Star Hotel .png']
     var random_pic = Math.floor(Math.random() * pic_list.length);
     var pic_name = pic_list[random_pic]
-    console.log(pic_name)
     pic.src = require(`${pic_name}`);
+    console.log(pic_name)
 
 
     this.init("bigalien",
