@@ -75,9 +75,10 @@ Matrix = function (rows, columns) {
 };
 
 Sprite = function () {
-  this.init = function (name, points) {
+  this.init = function (name, points, rt_text) {
     this.name     = name;
     this.points   = points;
+    this.rt_text = rt_text;
 
     this.vel = {
       x:   0,
@@ -134,7 +135,11 @@ Sprite = function () {
       this.x += this.currentNode.dupe.horizontal;
       this.context.save();
       this.configureTransform();
-      this.draw();
+      console.log(this.rt_text != null)
+      if (this.rt_text != null) {
+          this.context.font = "30px Arial";
+          this.context.fillText(rt_text, this.x, this.y);
+      }
       this.checkCollisionsAgainst(canidates);
       this.context.restore();
       if (this.currentNode) {
@@ -648,6 +653,10 @@ AlienBullet = function () {
 AlienBullet.prototype = new Bullet();
 
 Asteroid = function () {
+  var text_list = ['dictionary', 'dork', 'funny style']
+  random_number = 1//randomGenerator(0, text_list.length - 1);
+  rt_text = text_list[random_number]
+
   this.init("asteroid",
             [-10,   0,
               -5,   7,
@@ -658,7 +667,8 @@ Asteroid = function () {
                5,  -6,
                2, -10,
               -4, -10,
-              -4,  -5]);
+              -4,  -5],
+              rt_text);
 
   this.color = 'lightgray';
   this.solid = true;
