@@ -1523,13 +1523,12 @@ Sprite = function () {
             this.context.fillText(this.rt_text, 0, 20);
         }
         if (this.pic != null) {
-            context.drawImage(this.pic, this.points[0], this.points[1]);
+            this.context.drawImage(this.pic, this.points[2] - 12, this.points[3] + 4);
         }
-
 
         this.context.closePath();
         // TODO: remove when finished with words
-        this.context.stroke();
+        //this.context.stroke();
         if (this.solid) {
             this.context.fill();
         }
@@ -1657,18 +1656,17 @@ Ship = function () {
     pic.src = require('./smackathon_rocket.png');
     this.init("ship",
         [-6, 7,
-            0, -11,
-            6, 7
-        ],
+         0, -11,
+         6, 7],
         null,
         pic);
 
     this.color = 'navy';
-    this.solid = true;
+    this.solid = false;
 
     this.children.exhaust = new Sprite();
     this.children.exhaust.solid = true;
-    this.children.exhaust.color = 'red';
+    this.children.exhaust.color = 'yellow';
     this.children.exhaust.init("exhaust",
         [-3, 6,
             0, 11,
@@ -2131,8 +2129,8 @@ Game = {
     totalAsteroids: 10,
     lives: 0,
 
-    canvasWidth: 800,
-    canvasHeight: 600,
+    canvasWidth: 600,
+    canvasHeight: 400,
 
     sprites: [],
     ship: null,
