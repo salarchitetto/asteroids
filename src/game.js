@@ -2173,7 +2173,7 @@ Game = {
             this.state = 'waiting';
         },
         waiting: function () {
-            Text.renderText(window.ipad ? 'Touch Screen to Start' : "DEFEND THE BUDGETS!", 36, Game.canvasWidth / 2 - 270, Game.canvasHeight / 2);
+            Text.renderText(window.ipad ? 'Touch Screen to Start' : "DEFEND THE BUDGET !", 36, Game.canvasWidth / 2 - 270, Game.canvasHeight / 2);
             if (KEY_STATUS.space || window.gameStart) {
                 KEY_STATUS.space = false; // hack so we don't shoot right away
                 window.gameStart = false;
@@ -2195,7 +2195,7 @@ Game = {
             Game.totalAsteroids = 15;
             Game.spawnAsteroids();
 
-            Game.nextBigAlienTime = Date.now() + 30000 + (30000 * Math.random());
+            Game.nextBigAlienTime = Date.now() + 15000 ;
 
             this.state = 'spawn_ship';
         },
