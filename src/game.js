@@ -1741,9 +1741,18 @@ Ship = function () {
 };
 Ship.prototype = new Sprite();
 
+
+
 BigAlien = function () {
     var pic = new Image();
-    pic.src = require('./Business Class Token.png');
+    // pic.src = require('./Business Class Token.png');
+
+    var pic_list = ['./Business Class Token.png', './Luxury Rental Token.png']
+    var random_pic = Math.floor(Math.random() * pic_list.length);
+    var pic_name = pic_list[random_pic]
+    console.log(pic_name)
+    pic.src = require(`${pic_name}`);
+
 
     this.init("bigalien",
         [-20, 0,
@@ -1848,7 +1857,7 @@ BigAlien = function () {
     BigAlien.prototype.collision = function (other) {
         if (other.name == "bullet") Game.score += 200;
         Game.explosionAt(other.x, other.y);
-        this.visible = false;
+        this.die();
         this.newPosition();
     };
 
@@ -2195,7 +2204,7 @@ Game = {
             Game.totalAsteroids = 15;
             Game.spawnAsteroids();
 
-            Game.nextBigAlienTime = Date.now() + 10000 ;
+            Game.nextBigAlienTime = Date.now();
 
             this.state = 'spawn_ship';
         },
@@ -2221,7 +2230,11 @@ Game = {
             }
             if (!Game.bigAlien.visible &&
                 Date.now() > Game.nextBigAlienTime) {
-                Game.bigAlien.visible = true;
+                var bigAlien = new BigAlien();
+                bigAlien.visible = true;
+                bigAlien.setup();
+                Game.sprites.push(bigAlien);
+                Game.bigAlien = bigAlien;
                 Game.nextBigAlienTime = Date.now() + (30000 * Math.random());
             }
         },
