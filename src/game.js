@@ -2195,7 +2195,7 @@ Game = {
             Game.totalAsteroids = 15;
             Game.spawnAsteroids();
 
-            Game.nextBigAlienTime = Date.now() + 15000 ;
+            Game.nextBigAlienTime = Date.now() + 10000 ;
 
             this.state = 'spawn_ship';
         },
