@@ -1949,7 +1949,7 @@ Asteroid = function () {
         ],
         rt_text);
 
-    this.color = 'black';
+    this.color = '#e74c3c';
     this.solid = false;
     this.visible = true;
     this.scale = 1;
