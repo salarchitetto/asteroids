@@ -122,6 +122,11 @@ Sprite = function () {
 
     this.context.save();
     this.configureTransform();
+    console.log(this.rt_text != null)
+    if (this.rt_text != null) {
+          this.context.font = "30px Arial";
+          this.context.fillText(rt_text, this.x, this.y);
+      }
     this.draw();
 
     var canidates = this.findCollisionCanidates();
@@ -135,11 +140,6 @@ Sprite = function () {
       this.x += this.currentNode.dupe.horizontal;
       this.context.save();
       this.configureTransform();
-      console.log(this.rt_text != null)
-      if (this.rt_text != null) {
-          this.context.font = "30px Arial";
-          this.context.fillText(rt_text, this.x, this.y);
-      }
       this.checkCollisionsAgainst(canidates);
       this.context.restore();
       if (this.currentNode) {
@@ -654,26 +654,20 @@ AlienBullet.prototype = new Bullet();
 
 Asteroid = function () {
   var text_list = ['dictionary', 'dork', 'funny style']
-  random_number = 1//randomGenerator(0, text_list.length - 1);
+  random_number = Math.floor(Math.random() * (text_list.length));
   rt_text = text_list[random_number]
 
   this.init("asteroid",
-            [-10,   0,
-              -5,   7,
-              -3,   4,
-               1,  10,
-               5,   4,
-              10,   0,
-               5,  -6,
-               2, -10,
-              -4, -10,
-              -4,  -5],
-              rt_text);
+            [0,   0,
+             0,   20,
+             20,  20,
+             20,   0],
+             rt_text);
 
   this.color = 'lightgray';
   this.solid = true;
   this.visible = true;
-  this.scale = 6;
+  this.scale = 1;
   this.postMove = this.wrapPostMove;
 
   this.collidesWith = ["ship", "bullet", "bigalien", "alienbullet"];
@@ -682,20 +676,6 @@ Asteroid = function () {
     SFX.explosion();
     if (other.name == "bullet") Game.score += 120 / this.scale;
     this.scale /= 3;
-    if (this.scale > 0.5) {
-      // break into fragments
-      for (var i = 0; i < 3; i++) {
-        var roid = $.extend(true, {}, this);
-        roid.vel.x = Math.random() * 6 - 3;
-        roid.vel.y = Math.random() * 6 - 3;
-        if (Math.random() > 0.5) {
-          roid.points.reverse();
-        }
-        roid.vel.rot = Math.random() * 2 - 1;
-        roid.move(roid.scale * 3); // give them a little push
-        Game.sprites.push(roid);
-      }
-    }
     Game.explosionAt(other.x, other.y);
     this.die();
   };
@@ -895,7 +875,7 @@ SFX.muted = true;
 
 Game = {
   score: 0,
-  totalAsteroids: 5,
+  totalAsteroids: 50,
   lives: 0,
 
   canvasWidth: 800,
