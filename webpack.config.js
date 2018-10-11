@@ -21,6 +21,15 @@ module.exports = {
             filename: 'index.html'
         }),
     ],
+    module: {
+         rules: [{
+             test: /\.(png|jpg|gif)$/,
+             use: [{
+                 loader: 'file-loader',
+                 options: {}
+             }]
+         }]
+    },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'lib')
