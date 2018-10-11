@@ -258,6 +258,11 @@ Sprite = function () {
       var yi = xi + 1;
       this.context.lineTo(this.points[xi], this.points[yi]);
     }
+
+    if (this.rt_text != null) {
+         this.context.font = "30px Arial";
+         this.context.fillText(rt_text, this.points[0], this.points[1]);
+    }
     this.context.closePath();
     this.context.stroke();
     if (this.solid) {
@@ -663,7 +668,7 @@ AlienBullet = function () {
 AlienBullet.prototype = new Bullet();
 
 Asteroid = function () {
-  var text_list = ['dictionary', 'dork', 'funny style']
+  var text_list = ['a', 'b', 'c', 'd']
   random_number = Math.floor(Math.random() * (text_list.length));
   rt_text = text_list[random_number]
 
@@ -675,7 +680,7 @@ Asteroid = function () {
              rt_text);
 
   this.color = 'black';
-  this.solid = true;
+  this.solid = false;
   this.visible = true;
   this.scale = 1;
   this.postMove = this.wrapPostMove;
