@@ -1515,18 +1515,15 @@ Sprite = function () {
             var xi = i * 2;
             var yi = xi + 1;
             this.context.lineTo(this.points[xi], this.points[yi]);
-            // if (this.rt_text != null) {
-            //     this.context.font = "30px Arial";
-            //     this.context.fillText(rt_text, xi, yi);
-            // }
         }
 
         if (this.rt_text != null) {
             this.context.font = "30px Arial";
-            this.context.fillText(rt_text, this.points[0], this.points[1]);
+            this.context.fillText(rt_text, 0, 20);
         }
 
         this.context.closePath();
+        // TODO: remove when finished with words
         this.context.stroke();
         if (this.solid) {
             this.context.fill();
