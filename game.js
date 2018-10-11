@@ -37,6 +37,15 @@ $(window).keydown(function (e) {
 
 GRID_SIZE = 60;
 
+function fetch_pic(folder_name, image_name_with_extension)
+{
+  base_image = new Image();
+  image_name = '/' + folder_name + '/' + image_name_with_extension;
+  console.log(image_name);
+  base_image.src = image_name;
+  return base_image;
+}
+
 Matrix = function (rows, columns) {
   var i, j;
   this.data = new Array(rows);
@@ -75,10 +84,11 @@ Matrix = function (rows, columns) {
 };
 
 Sprite = function () {
-  this.init = function (name, points, rt_text) {
+  this.init = function (name, points, rt_text, pic) {
     this.name     = name;
     this.points   = points;
     this.rt_text = rt_text;
+    this.pic = pic;
 
     this.vel = {
       x:   0,
@@ -241,16 +251,13 @@ Sprite = function () {
     this.context.beginPath();
 
     this.context.moveTo(this.points[0], this.points[1]);
+    this.context.font = "30px Arial";
+
     for (var i = 1; i < this.points.length/2; i++) {
       var xi = i*2;
       var yi = xi + 1;
       this.context.lineTo(this.points[xi], this.points[yi]);
-      if (this.rt_text != null) {
-          this.context.font = "30px Arial";
-          this.context.fillText(rt_text, xi, yi);
-      }
     }
-
     this.context.closePath();
     this.context.stroke();
     if (this.solid) {
@@ -378,10 +385,14 @@ Sprite = function () {
 };
 
 Ship = function () {
+  pic = fetch_pic("img", "rocketrip.png")
   this.init("ship",
             [-6,   7,
               0, -11,
-              6,   7]);
+              6,   7],
+              null,
+              pic
+              );
 
   this.color = 'navy';
   this.solid = true;
@@ -650,8 +661,6 @@ AlienBullet = function () {
   };
 };
 AlienBullet.prototype = new Bullet();
-
-
 
 Asteroid = function () {
   var text_list = ['dictionary', 'dork', 'funny style']
