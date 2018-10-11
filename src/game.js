@@ -1742,6 +1742,9 @@ Ship = function () {
 Ship.prototype = new Sprite();
 
 BigAlien = function () {
+    var pic = new Image();
+    pic.src = require('./Business Class Token.png');
+
     this.init("bigalien",
         [-20, 0,
             -12, -4,
@@ -1751,7 +1754,7 @@ BigAlien = function () {
             -12, 4,
             -20, 0,
             20, 0
-        ]);
+        ], null, pic);
 
     this.children.top = new Sprite();
     this.children.top.init("bigalien_top",
