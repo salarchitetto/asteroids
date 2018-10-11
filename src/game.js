@@ -2132,8 +2132,8 @@ Game = {
     totalAsteroids: 15,
     lives: 0,
 
-    canvasWidth: 600,
-    canvasHeight: 400,
+    canvasWidth: 1090,
+    canvasHeight: 730,
 
     sprites: [],
     ship: null,
