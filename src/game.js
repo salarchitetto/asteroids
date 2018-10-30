@@ -1751,8 +1751,6 @@ BigAlien = function () {
     var random_pic = Math.floor(Math.random() * pic_list.length);
     var pic_name = pic_list[random_pic]
     pic.src = require(`${pic_name}`);
-    console.log(pic_name)
-
 
     this.init("bigalien",
         [-20, 0,
@@ -1855,7 +1853,7 @@ BigAlien = function () {
     };
 
     BigAlien.prototype.collision = function (other) {
-        if (other.name == "bullet") Game.score += 200;
+        if (other.name == "bullet") Game.score -= 20;
         Game.explosionAt(other.x, other.y);
         this.die();
         this.newPosition();
@@ -1879,11 +1877,12 @@ BigAlien = function () {
 BigAlien.prototype = new Sprite();
 
 Bullet = function () {
-    this.init("bullet", [0, 0]);
+    this.init("bullet", [0.1, 0.1]);
     this.time = 0;
     this.bridgesH = false;
     this.bridgesV = false;
     this.postMove = this.wrapPostMove;
+    this.color = "#96DAED"
     // asteroid can look for bullets so doesn't have
     // to be other way around
     //this.collidesWith = ["asteroid"];
@@ -1967,7 +1966,7 @@ Asteroid = function () {
     this.collidesWith = ["ship", "bullet", "bigalien", "alienbullet"];
 
     this.collision = function (other) {
-        if (other.name == "bullet") Game.score += 120 / this.scale;
+        if (other.name == "bullet") Game.score -= 10 / this.scale;
         this.scale /= 3;
         Game.explosionAt(other.x, other.y);
         this.die();
@@ -2198,7 +2197,7 @@ Game = {
                 }
             }
 
-            Game.score = 0;
+            Game.score = 5000;
             Game.lives = 2;
             Game.totalAsteroids = 15;
             Game.spawnAsteroids();
@@ -2428,7 +2427,7 @@ $(function () {
         }
 
         // score
-        var score_text = '' + Game.score;
+        var score_text = '$ ' + Game.score;
         Text.renderText(score_text, 21, Game.canvasWidth - 16 * score_text.length, 25);
 
         // extra dudes
